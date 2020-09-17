@@ -1,0 +1,49 @@
+kind: Service
+apiVersion: v1
+metadata:
+    name: hotel-manager-service
+    namespace: corona
+    labels:
+        app: hotel-manager-service
+        version: v1
+spec:
+    selector:
+        app: hotel-manager-service
+    ports:
+        - port: 7502
+          targetPort: 7502
+          name: http
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: hotel-manager-service-v1
+    namespace: corona
+    labels:
+        app: hotel-manager-service
+        version: v1
+spec:
+    replicas: 1
+    selector:
+       matchLabels:
+           app: hotel-manager-service
+           version: v1
+    template:
+        metadata:
+            labels:
+                app: hotel-manager-service
+                version: v1
+        spec:
+            containers:
+                - image: skzern/travel-hotel:0.0.1
+                  imagePullPolicy: Always
+                  name: hotel-manager
+                  ports:
+                      - containerPort: 7502
+                  env:
+                    - name: HOTEL_TOPIC
+                      value: 'hotel'
+                    - name: OrchestrationEngine_URL
+                      value: http://100.94.22.212/engine-rest
+                    

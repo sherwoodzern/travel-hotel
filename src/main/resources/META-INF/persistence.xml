@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence
+    version="2.2"
+    xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit
+      name="HotelService"
+      transaction-type="JTA">
+    <jta-data-source>travelDataSource</jta-data-source>
+    <class>com.oracle.camunda.travel.model.Hotel</class>
+    <properties>
+      <property name="eclipselink.logging.parameters" value="true"/>
+      <property name="eclipselink.deploy-on-startup" value="true"/>
+      <property name="eclipselink.weaving" value="false" />
+      <property name="eclipselink.logging.level.sql" value="FINEST" />
+      <property name="eclipselink.logging.level" value="FINEST" />
+      <property name="eclipselink.logging.level.cache" value="FINEST" />
+      <property name="eclipselink.jdbc.native-sql" value="true"/>
+      <property name="eclipselink.logging.logger" value="JavaLogger"/>
+      <property name="eclipselink.target-server" value="io.helidon.integrations.cdi.eclipselink.CDISEPlatform"/>
+      <property name="eclipselink.target-database" value="org.eclipse.persistence.platform.database.OraclePlatform"/>
+    </properties>
+  </persistence-unit>
+  <!-- added this comment in hopes getting the proper persistence.xml file -->
+
+  <!-- Another comment line -->
+</persistence>
